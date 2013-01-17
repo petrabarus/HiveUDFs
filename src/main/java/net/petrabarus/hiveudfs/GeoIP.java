@@ -51,7 +51,8 @@ import org.apache.hadoop.io.Text;
  * library.
  *
  * The function will need three arguments. <ol> <li>IP Address in long
- * format.</li> <li>IP attribute (e.g. COUNTRY, CITY, REGION, etc)</li> <li>Database file name.</li> </ol>
+ * format.</li> <li>IP attribute (e.g. COUNTRY, CITY, REGION, etc)</li>
+ * <li>Database file name.</li> </ol>
  *
  * This is a derived version from https://github.com/edwardcapriolo/hive-geoip.
  * (Please let me know if I need to modify the license)
@@ -194,7 +195,7 @@ public class GeoIP extends GenericUDF {
                         } else if (attributeName.equals(POSTAL_CODE)) {
                                 retVal = location.postalCode;
                         } else if (attributeName.equals(REGION)) {
-                                retVal = location.region + "";
+                                retVal = location.region;
                         } else if (attributeName.equals(REGION_NAME)) {
                                 retVal = RegionName.regionNameByCode(location.countryCode, location.region);
                         } else if (attributeName.equals(ORG)) {
@@ -204,6 +205,9 @@ public class GeoIP extends GenericUDF {
                         }
                 } catch (Exception ex) {
                         //This will be useful if you don't have a complete database file.
+                        return null;
+                }
+                if (retVal == null) {
                         return null;
                 }
                 return new Text(retVal);

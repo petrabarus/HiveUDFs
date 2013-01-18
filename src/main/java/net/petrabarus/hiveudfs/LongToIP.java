@@ -119,7 +119,7 @@ public class LongToIP extends GenericUDF {
          */
         @Override
         public String getDisplayString(String[] strings) {
-                assert (strings.length == 3);
-                return "translate(" + strings[0] + ")";
+                assert (strings.length == 1);
+                return "_FUNC_(" + strings[0] + ")";
         }
 }

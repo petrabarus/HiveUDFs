@@ -36,7 +36,7 @@ Usage:
 
 **GeoIP** wraps MaxMind GeoIP function for Hive. 
 This is a derivation from @edwardcapriolo [hive-geoip](http://github.com/edwardcapriolo/hive-geoip).
-Separate GeoIP.jar file and GeoIP database will be needed to run the function.
+Separate GeoIP database will be needed to run the function.
 The GeoIP will need three argument.
 
 1. IP address in long
@@ -47,7 +47,6 @@ A lite version of the MaxMind GeoIP can be obtained from [here] (http://dev.maxm
 
 Usage:
 
-    ADD JAR GeoIP.jar
     ADD JAR HiveUDFs.jar;
     ADD FILE /usr/share/GeoIP/GeoIPCity.dat;
     CREATE TEMPORARY FUNCTION geoip as 'net.petrabarus.hiveudfs.GeoIP';

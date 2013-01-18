@@ -28,7 +28,7 @@ package net.petrabarus.hiveudfs;
 
 import com.maxmind.geoip.Location;
 import com.maxmind.geoip.LookupService;
-import com.maxmind.geoip.RegionName;
+import com.maxmind.geoip.regionName;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -69,7 +69,7 @@ value = "_FUNC_(ip,property,database) - looks a property for an IP address from"
 + "Usage:\n"
 + " > _FUNC_(16843009, \"COUNTRY_NAME\", \"./GeoIP.dat\")")
 public class GeoIP extends GenericUDF {
-
+        
         public static final String COUNTRY_NAME = "COUNTRY_NAME";
         public static final String COUNTRY_CODE = "COUNTRY_CODE";
         public static final String AREA_CODE = "AREA_CODE";
@@ -117,7 +117,7 @@ public class GeoIP extends GenericUDF {
                                 "A string or long for first argument was expected but an argument of type " + arguments[0].getTypeName()
                                 + " was given.");
                 }
-
+                
                 for (int i = 1; i < arguments.length; i++) {
                         PrimitiveObjectInspector.PrimitiveCategory primitiveCategory = ((PrimitiveObjectInspector) arguments[i])
                                 .getPrimitiveCategory();
@@ -128,7 +128,7 @@ public class GeoIP extends GenericUDF {
                                         + " was given.");
                         }
                 }
-
+                
                 converters = new ObjectInspectorConverters.Converter[arguments.length];
                 converters[0] = ObjectInspectorConverters.getConverter(arguments[0],
                         PrimitiveObjectInspectorFactory.writableLongObjectInspector);
@@ -197,7 +197,7 @@ public class GeoIP extends GenericUDF {
                         } else if (attributeName.equals(REGION)) {
                                 retVal = location.region;
                         } else if (attributeName.equals(REGION_NAME)) {
-                                retVal = RegionName.regionNameByCode(location.countryCode, location.region);
+                                retVal = regionName.regionNameByCode(location.countryCode, location.region);
                         } else if (attributeName.equals(ORG)) {
                                 retVal = lookupService.getOrg(ip);
                         } else if (attributeName.equals(ID)) {
